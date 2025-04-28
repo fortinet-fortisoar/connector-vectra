@@ -1,17 +1,25 @@
 ## About the connector
 Vectra provides automated threat detection, empowers threat hunting and exposes hidden attackers
-<p>This document provides information about the vectra Connector, which facilitates automated interactions, with a vectra server using FortiSOAR&trade; playbooks. Add the vectra Connector as a step in FortiSOAR&trade; playbooks and perform automated operations with vectra.</p>
+<p>This document provides information about the Vectra Connector, which facilitates automated interactions, with a Vectra server using FortiSOAR&trade; playbooks. Add the Vectra Connector as a step in FortiSOAR&trade; playbooks and perform automated operations with Vectra.</p>
 
 ### Version information
 
 Connector Version: 4.0.0
 
+
 Authored By: Fortinet
 
 Certified: No
 ## Release Notes for version 4.0.0
-Following enhancements have been made to the vectra Connector in version 4.0.0:
+Following enhancements have been made to the Vectra Connector in version 4.0.0:
+<h3>What's Improved</h3>
+
 <ul>
+<li>The Authentication parameters are changed now it requires client ID and secret for authentication.</li>
+<li>The API are updated to 3.3 version.</li>
+
+<h3>What's Added</h3>
+
 <li>Get Accounts List</li>
 <li>Get Detection By ID</li>
 <li>Get Outcomes List</li>
@@ -26,7 +34,7 @@ Following enhancements have been made to the vectra Connector in version 4.0.0:
 <li>Get Vectra Match Rules</li>
 </ul>
 
-<h2>Parameters are updated for following actions:</h2>
+<h3>Parameters are updated for following actions:</h3>
 
 <ul>
 <li>Get Threat Feeds</li>
@@ -44,8 +52,8 @@ Following enhancements have been made to the vectra Connector in version 4.0.0:
 <pre>yum install cyops-connector-vectra</pre>
 
 ## Prerequisites to configuring the connector
-- You must have the credentials of vectra server to which you will connect and perform automated operations.
-- The FortiSOAR&trade; server should have outbound connectivity to port 443 on the vectra server.
+- You must have the credentials of Vectra server to which you will connect and perform automated operations.
+- The FortiSOAR&trade; server should have outbound connectivity to port 443 on the Vectra server.
 
 ## Minimum Permissions Required
 - Not applicable
@@ -53,7 +61,7 @@ Following enhancements have been made to the vectra Connector in version 4.0.0:
 ## Configuring the connector
 For the procedure to configure a connector, click [here](https://docs.fortinet.com/document/fortisoar/0.0.0/configuring-a-connector/1/configuring-a-connector)
 ### Configuration parameters
-<p>In FortiSOAR&trade;, on the Connectors page, click the <strong>vectra</strong> connector row (if you are in the <strong>Grid</strong> view on the Connectors page) and in the <strong>Configurations</strong> tab enter the required configuration details:</p>
+<p>In FortiSOAR&trade;, on the Connectors page, click the <strong>Vectra</strong> connector row (if you are in the <strong>Grid</strong> view on the Connectors page) and in the <strong>Configurations</strong> tab enter the required configuration details:</p>
 <table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Server URL</td><td>URL of the Vectra server to which you will connect and perform the automated operations.
 </td>
 </tr><tr><td>Client ID</td><td>Specify the client ID created to access vectra APIs.
@@ -84,116 +92,126 @@ The following automated operations can be included in playbooks and you can also
 
 ### operation: Get Accounts List
 #### Input parameters
-<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Minimum ID</td><td>Returns Accounts with an ID greater than or equal to the specified ID.
-</td></tr><tr><td>Maximum ID</td><td>Returns Accounts with an ID less than or equal to the specified ID.
-</td></tr><tr><td>Minimum Threat</td><td>Returns Accounts with a threat score greater than or equal to the specified score.
-</td></tr><tr><td>Maximum Threat</td><td>Returns Accounts with a threat score less than or equal to the specified score.
-</td></tr><tr><td>Minimum Certainty</td><td>Returns Accounts with a certainty score greater than or equal to the specified score.
-</td></tr><tr><td>Maximum Certainty</td><td>Returns Accounts with a certainty score less than or equal to the specified score.
-</td></tr><tr><td>State</td><td>Filters by state ('active', 'inactive'). Possible values are: active, inactive.
-</td></tr><tr><td>Search Query</td><td>SearSearch query in Lucene query syntax.
-</td></tr><tr><td>Search Query Only</td><td>Use specifically this search query. Compared to "search_query" where default arguments are appended.
-</td></tr><tr><td>Minimum Privilege Level</td><td>Returns entries with a privilege level greater than or equal to the specified score.
-</td></tr><tr><td>Maximum Privilege Level</td><td>Returns entries with a privilege level greater than or equal to the specified score.
-</td></tr><tr><td>Privilege Category</td><td>Filters by the privilege category ("low", "medium", "high") provided.
-</td></tr><tr><td>Tags</td><td>Filters by a tag or a comma-separated tags.
+<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Minimum ID</td><td>Specify an ID to return accounts with an ID greater than or equal to the specified ID.
+</td></tr><tr><td>Maximum ID</td><td>Specify an ID to return accounts with an ID less than or equal to the specified ID.
+</td></tr><tr><td>Minimum Threat</td><td>Specify a threat score to return accounts with a threat score greater than or equal to the specified score.
+</td></tr><tr><td>Maximum Threat</td><td>Specify a threat score to return accounts with a threat score greater than or equal to the specified score.
+</td></tr><tr><td>Minimum Certainty</td><td>Specify a certainty score to return accounts with a certainty score greater than or equal to the specified score.
+</td></tr><tr><td>Maximum Certainty</td><td>Specify a certainty score to return accounts with a certainty score less than or equal to the specified score.
+</td></tr><tr><td>State</td><td>Specify the state to filter accounts by ('active' or 'inactive'). Possible values are: active, inactive.
+</td></tr><tr><td>Search Query</td><td>Specify a search query using Lucene query syntax.
+</td></tr><tr><td>Search Query Only</td><td>Specify a search query to use exactly as provided, without appending default arguments.
+</td></tr><tr><td>Minimum Privilege Level</td><td>Specify a privilege level to return entries with a privilege level greater than or equal to the specified score.
+</td></tr><tr><td>Maximum Privilege Level</td><td>Specify a privilege level to return entries with a privilege level greater than or equal to the specified score.
+</td></tr><tr><td>Privilege Category</td><td>Specify the privilege category ("low", "medium", "high") to filter entries.
+</td></tr><tr><td>Tags</td><td>Specify a tag or comma-separated tags to filter entries.
 </td></tr><tr><td>Query Parameter</td><td>Specify the parameters to filter the records.
 </td></tr></tbody></table>
 
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Get Detections
 #### Input parameters
-<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Minimum ID</td><td>Returns detections with an ID greater than or equal to the specified ID.
-</td></tr><tr><td>Maximum ID</td><td>Returns detections with an ID less than or equal to the specified ID.
-</td></tr><tr><td>Minimum Threat</td><td>Returns detections with a threat score greater than or equal to the specified score.
-</td></tr><tr><td>Maximum Threat</td><td>Returns detections with a threat score less than or equal to the specified score.
-</td></tr><tr><td>Minimum Certainty</td><td>Returns detections with a certainty score greater than or equal to the specified score.
-</td></tr><tr><td>Maximum Certainty</td><td>Returns detections with a certainty score less than or equal to the specified score.
-</td></tr><tr><td>State</td><td>Filters by state ('active', 'inactive'). Possible values are: active, inactive.
-</td></tr><tr><td>Search Query</td><td>Search query in Lucene query syntax.
-</td></tr><tr><td>Search Query Only</td><td>Use specifically this search query. Compared to "search_query" where default arguments are appended.
+<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Minimum ID</td><td>Specify an ID to return detections with an ID greater than or equal to the specified ID.
+</td></tr><tr><td>Maximum ID</td><td>Specify an ID to return detections with an ID less than or equal to the specified ID.
+</td></tr><tr><td>Minimum Threat</td><td>Specify a threat score to return detections with a threat score greater than or equal to the specified score.
+</td></tr><tr><td>Maximum Threat</td><td>Specify a threat score to return detections with a threat score less than or equal to the specified score.
+</td></tr><tr><td>Minimum Certainty</td><td>Specify a certainty score to return detections with a certainty score greater than or equal to the specified score.
+</td></tr><tr><td>Maximum Certainty</td><td>Specify a certainty score to return detections with a certainty score less than or equal to the specified score.
+</td></tr><tr><td>State</td><td>Specify the state ('active' or 'inactive') to filter detections. Possible values are: active, inactive.
+</td></tr><tr><td>Search Query</td><td>Specify a search query in Lucene query syntax.
+</td></tr><tr><td>Search Query Only</td><td>Specify this search query to use it exactly as provided, unlike search_query, where default arguments are appended.
 </td></tr><tr><td>Query Parameter</td><td>Specify the parameters to filter the records. E.g. {'id': 123, 'statues' 'active'}.
 </td></tr></tbody></table>
 
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Get Detection By ID
 #### Input parameters
 <table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Detection ID</td><td>Specify the detection ID to get the details.
 </td></tr></tbody></table>
+
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Get Outcomes List
 #### Input parameters
 None.
+
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Get Hosts
 #### Input parameters
-<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Minimum ID</td><td>Returns hosts with an ID greater than or equal to the specified ID.
-</td></tr><tr><td>Maximum ID</td><td>Returns hosts with an ID less than or equal to the specified ID.
-</td></tr><tr><td>Minimum Threat</td><td>Returns hosts with a threat score greater than or equal to the specified score.
-</td></tr><tr><td>Maximum Threat</td><td>Returns hosts with a threat score less than or equal to the specified score.
-</td></tr><tr><td>Minimum Certainty</td><td>Returns hosts with a certainty score greater than or equal to the specified score.
-</td></tr><tr><td>Maximum Certainty</td><td>Returns hosts with a certainty score less than or equal to the specified score.
-</td></tr><tr><td>State</td><td>Filters by state ('active', 'inactive'). Possible values are: active, inactive.
-</td></tr><tr><td>Search Query</td><td>Search query in Lucene query syntax.
-</td></tr><tr><td>Search Query Only</td><td>Use specifically this search query. Compared to "search_query" where default arguments are appended.
+<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Minimum ID</td><td>Specify an ID to return hosts with an ID greater than or equal to the specified ID.
+</td></tr><tr><td>Maximum ID</td><td>Specify an ID to return hosts with an ID less than or equal to the specified ID.
+</td></tr><tr><td>Minimum Threat</td><td>Specify a threat score to return hosts with a threat score greater than or equal to the specified score.
+</td></tr><tr><td>Maximum Threat</td><td>Specify a threat score to return hosts with a threat score less than or equal to the specified score.
+</td></tr><tr><td>Minimum Certainty</td><td>Specify a certainty score to return hosts with a certainty score greater than or equal to the specified score.
+</td></tr><tr><td>Maximum Certainty</td><td>Specify a certainty score to return hosts with a certainty score less than or equal to the specified score.
+</td></tr><tr><td>State</td><td>Specify the state ('active' or 'inactive') to filter hosts. Possible values are: active, inactive.
+</td></tr><tr><td>Search Query</td><td>Specify a search query in Lucene query syntax.
+</td></tr><tr><td>Search Query Only</td><td>Specify this search query to use it exactly as provided, unlike search_query, where default arguments are appended.
 </td></tr><tr><td>Query Parameter</td><td>Specify the parameters to filter the records. E.g. {'id': 123, 'statues' 'active'}.
 </td></tr></tbody></table>
 
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Get Assignments List
 #### Input parameters
-<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Account IDs</td><td>Filters by accounts IDs. You can specify multiple IDs as comma separated values.
-</td></tr><tr><td>Assignee IDs</td><td>Filters by assignees IDs.You can specify multiple IDs as comma separated values.
-</td></tr><tr><td>Host IDs</td><td>Filters by hosts IDs.You can specify multiple IDs as comma separated values.
-</td></tr><tr><td>Outcome IDs</td><td>Filters by outcomes IDs.You can specify multiple IDs as comma separated values.
-</td></tr><tr><td>Resolution State</td><td>Filters by resolution state.
+<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Account IDs</td><td>Specify account IDs to filter by. You can provide multiple IDs as comma-separated values.
+</td></tr><tr><td>Assignee IDs</td><td>Specify assignee IDs to filter by. You can provide multiple IDs as comma-separated values.
+</td></tr><tr><td>Host IDs</td><td>Specify host IDs to filter by. You can provide multiple IDs as comma-separated values.
+</td></tr><tr><td>Outcome IDs</td><td>Specify outcome IDs to filter by. You can provide multiple IDs as comma-separated values.
+</td></tr><tr><td>Resolution State</td><td>Specify the resolution state to filter by.
 </td></tr><tr><td>Query Parameter</td><td>Specify the parameters to filter the records. E.g. {'id': 123, 'statues' 'active'}.
 </td></tr></tbody></table>
 
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Get Groups List
 #### Input parameters
-<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Group Type</td><td>Filter by group type. Possible values are: account, host, ip, domain.
-</td></tr><tr><td>Account Names</td><td>Filter by Account Names. Supports comma-separated values.
-</td></tr><tr><td>Domains</td><td>Filter by Domains. Supports comma-separated values.
-</td></tr><tr><td>Host IDs</td><td>Filter by Host IDs. Supports comma-separated values.
-</td></tr><tr><td>Host Names</td><td>Filter by Host Names. Supports comma-separated values.
-</td></tr><tr><td>Importance</td><td>Filter by group importance. Possible values are: high, medium, low, never_prioritize.
-</td></tr><tr><td>IPs</td><td>Filter by IPs. Supports comma-separated values.
-</td></tr><tr><td>Description</td><td>Filter by group description.
-</td></tr><tr><td>Last Modified Timestamp</td><td>Return only the groups which have a last modification time equal to or after the given time.
-</td></tr><tr><td>Last Modified By</td><td>Filters by the user id who made the most recent modification to the group.
-</td></tr><tr><td>Group Name</td><td>Filters by group name.
+<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Group Type</td><td>Specify the group type to filter by. Possible values are: account, host, IP, domain.
+</td></tr><tr><td>Account Names</td><td>Specify account names to filter by. Comma-separated values are supported.
+</td></tr><tr><td>Domains</td><td>Specify domains to filter by. Comma-separated values are supported.
+</td></tr><tr><td>Host IDs</td><td>Specify host IDs to filter by. Comma-separated values are supported.
+</td></tr><tr><td>Host Names</td><td>Specify host names to filter by. Comma-separated values are supported.
+</td></tr><tr><td>Importance</td><td>Specify the group importance to filter by. Possible values are: high, medium, low, never_prioritize.
+</td></tr><tr><td>IPs</td><td>Specify IPs to filter by. Comma-separated values are supported.
+</td></tr><tr><td>Description</td><td>Specify the group description to filter by.
+</td></tr><tr><td>Last Modified Timestamp</td><td>Specify a time to return only the groups that have a last modification time equal to or after the given time.
+</td></tr><tr><td>Last Modified By</td><td>Specify the user ID to filter by the user who made the most recent modification to the group.
+</td></tr><tr><td>Group Name</td><td>Specify the group name to filter by.
 </td></tr><tr><td>Query Parameter</td><td>Specify the parameters to filter the records. E.g. {'id': 123, 'statues' 'active'}.
 </td></tr></tbody></table>
 
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Get Users List
 #### Input parameters
-<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Username</td><td>Filters by user name.
-</td></tr><tr><td>Role</td><td>Filters by user role.
-</td></tr><tr><td>Type</td><td>Filters by type ('Local', 'SAML', etc). Possible values are: local, SAML etc.
-</td></tr><tr><td>Last Login Datetime</td><td>Filters for Users that logged in since the given datetime.
+<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Username</td><td>Specify the user name to filter by.
+</td></tr><tr><td>Role</td><td>Specify the user role to filter by.
+</td></tr><tr><td>Type</td><td>Specify the type to filter by ('Local', 'SAML', etc.). Possible values are: local, SAML, etc.
+</td></tr><tr><td>Last Login Datetime</td><td>Specify a datetime to filter users who have logged in since the given time.
 </td></tr><tr><td>Query Parameter</td><td>Specify the parameters to filter the records. E.g. {'id': 123, 'statues' 'active'}.
 </td></tr></tbody></table>
 
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Get Outcome By ID
 #### Input parameters
 <table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Outcome ID</td><td>Specify the outcome ID to get the details.
@@ -202,6 +220,7 @@ None.
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Get Host By ID
 #### Input parameters
 <table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Host ID</td><td>Specify the host ID to get the details.
@@ -210,6 +229,7 @@ None.
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Get Assignments By ID
 #### Input parameters
 <table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Assignments ID</td><td>Specify the assignments ID to get the details.
@@ -218,6 +238,7 @@ None.
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Get Audit Log Events Associated with a User ID
 #### Input parameters
 <table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>User ID</td><td>Specify the user ID to get the details.
@@ -226,6 +247,7 @@ None.
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Execute an API Request
 #### Input parameters
 <table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>HTTP Method</td><td>Select an HTTP action for the request. You can select from the following options: DELETE GET PATCH POST PUT
@@ -237,6 +259,7 @@ None.
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Get Threat Feeds
 #### Input parameters
 <table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Query Parameter</td><td>Specify the parameters to filter the records. E.g. {'id': 123, 'statues' 'active'}.
@@ -245,6 +268,7 @@ None.
 #### Output
 
  The output contains a non-dictionary value.
+
 ### operation: Get Vectra Match Rules
 #### Input parameters
 <table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Query Parameter</td><td>Specify the parameters to filter the records. E.g. {'id': 123, 'statues' 'active'}.
@@ -254,7 +278,7 @@ None.
 
  The output contains a non-dictionary value.
 ## Included playbooks
-The `Sample - vectra - 4.0.0` playbook collection comes bundled with the vectra connector. These playbooks contain steps using which you can perform all supported actions. You can see bundled playbooks in the **Automation** > **Playbooks** section in FortiSOAR&trade; after importing the vectra connector.
+The `Sample - vectra - 4.0.0` playbook collection comes bundled with the Vectra connector. These playbooks contain steps using which you can perform all supported actions. You can see bundled playbooks in the **Automation** > **Playbooks** section in FortiSOAR&trade; after importing the Vectra connector.
 
 - Execute an API Request
 - Get Accounts List
